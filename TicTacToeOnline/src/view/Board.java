@@ -17,7 +17,7 @@ public class Board extends GridPane {
 		newBoard();
 	}
 
-	// Methode zur grafischen Erstellung
+	// Methode zur grafischen Erstellung des Board
 	public void newBoard() {
 
 		for (int row = 0; row < 3; row++) {

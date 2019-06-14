@@ -48,12 +48,12 @@ public class TicTacToeView {
 	}
 
 	// getter für den Button aus dem Board
-	public Button getButt(int col, int row) {
-		return board.butt[col][row];
+	public Button getButt(int row, int col) {
+		return board.butt[row][col];
 	}
 
-	public void setButt(int col, int row, char setMark) {
-		board.setButt(col, row, setMark);
+	public void setButt(int row, int col, char setMark) {
+		board.setButt(row, col, setMark);
 	}
 
 	// Getter der Menu Buttons
@@ -61,26 +61,17 @@ public class TicTacToeView {
 		return menuBar.newGame;
 	}
 
-	// Getter für die left side buttons
-	public Button getSetName() {
-		return left.setName;
-	}
-
 	// Getter für den NewRoundButton
 	public Button getNewRound() {
+		this.setWinLabel(" ");
 		return left.newRound;
 	}
 
 	public void setNewBoard() {
 		board.newBoard();
 	}
-
+	//Setzten des Labels wenn ein Sieger feststeht
 	public void setWinLabel(String win) {
-		if (win == "x") {
-			win = "o";
-		} else {
-			 win = "x";
-		left.setLabel(win);
-	}
+				left.setLabel(win);
 	}
 }

@@ -13,10 +13,11 @@ public class TicTacToeModelClient implements TicTacToeModelInterface {
 	private PrintWriter ostream;
 	private BufferedReader echoes;
 	
+	//Der Modelclient Socket um mit dem Server zu kommunizieren, localhost auf Port 50500
 	public TicTacToeModelClient() {
 		try {
 			this.socket = new Socket("127.0.0.1", 50500);
-			socket.setSoTimeout(5000);
+			socket.setSoTimeout(15);
 			this.ostream = new PrintWriter(this.socket.getOutputStream(), true);
 			this.echoes = new BufferedReader(
 					new InputStreamReader(this.socket.getInputStream()));
@@ -27,12 +28,13 @@ public class TicTacToeModelClient implements TicTacToeModelInterface {
 		}
 	}
 	
-	@Override
+	//Wenn setBoard methode ausgerufen, sendet String and Server
 	public void setBoard() {
 		this.ostream.println("setBoard");
 	}
 
-	@Override
+	//Sendet "WC" an Server welches die Methode winCheck aufruft
+	//Wartet ein true/false als antwort ab um zu sehen ob jemand gewonnen hat
 	public boolean winCheck() {
 		boolean rval = false;
 		this.ostream.println("WC");
@@ -45,7 +47,8 @@ public class TicTacToeModelClient implements TicTacToeModelInterface {
 		return rval;
 	}
 
-	@Override
+	//ChangeToken methode sendet "CT" an server was die ChangeToken Methode aufgruft
+	//Antwort ReturnValue ist der neue Token
 	public char changeToken() {
 		String rval;
 		this.ostream.println("CT");
@@ -58,7 +61,7 @@ public class TicTacToeModelClient implements TicTacToeModelInterface {
 		return rval.toCharArray()[0];
 	}
 
-	@Override
+	//Sendet string SM und ruft so auf dem Server die SetMark methode auf
 	public char setMark() {
 		String rval;
 		this.ostream.println("SM");
@@ -71,7 +74,8 @@ public class TicTacToeModelClient implements TicTacToeModelInterface {
 		return rval.toCharArray()[0];
 	}
 
-	@Override
+	//GetMark sendet dem Server GM und die beiden row col int
+	//als antwort kommt ein Symbol x oder o welches gestzt ist
 	public char getMark(int row, int col) {
 		String rval;
 		this.ostream.println("GM" + Integer.toString(row) + 
@@ -83,9 +87,10 @@ public class TicTacToeModelClient implements TicTacToeModelInterface {
 		}	
 		System.out.println("GM Answer: " + rval);
 		return rval.toCharArray()[0];
+		
 	}
 	
-	@Override
+	//placeMark führt die Methode aus welche den Char auf das Board setzt.
 	public boolean placeMark(int row, int col) {
 		boolean rval = false;
 		String rb;
@@ -100,5 +105,6 @@ public class TicTacToeModelClient implements TicTacToeModelInterface {
 		System.out.println("PM Answer: " + rb);
 		return rval;
 	}
+
 
 }

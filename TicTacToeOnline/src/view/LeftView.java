@@ -14,9 +14,9 @@ import javafx.scene.layout.VBox;
 
 
 public class LeftView extends VBox {
-	Label playerName = new Label("Set Your Name:");
-	TextField playerN = new TextField();
-	Button setName = new Button("Confirm Name");
+	//Label playerName = new Label("Set Your Name:");
+//	TextField playerN = new TextField();
+	//Button setName = new Button("Confirm Name");
 	Button newRound = new Button("New Round");
 	
 	Label whoWon = new Label();
@@ -25,16 +25,16 @@ public class LeftView extends VBox {
 		super();  //Der Super-Constructor wird zuerst aufgerufen!
 	
 		
-		setName.setId("button2");
-		playerName.setId("label");
+		//setName.setId("button2");
+	//	playerName.setId("label");
 		whoWon.setId("label");
 		newRound.setId("button2");
 		
-
+		this.setMinSize(200, 200);
 		this.setPadding(new Insets(175, 25, 25, 25));
 		this.setSpacing(10);
 		this.setAlignment(Pos.BASELINE_LEFT);
-		this.getChildren().addAll(playerName, playerN, setName, newRound, whoWon);
+		this.getChildren().addAll(newRound, whoWon);
 	
 		//Hover effekt wenn maus auf dem knopf ist
 		DropShadow shadow = new DropShadow();
@@ -44,7 +44,7 @@ public class LeftView extends VBox {
 		            newRound.setEffect(shadow);
 		        }
 		});
-		//Entfernt den hover effekt wenn maus nicht auf dem knopf
+		//Entfernt den hover effekt wenn maus nicht auf dem knopf ist
 			newRound.addEventHandler(MouseEvent.MOUSE_EXITED, 
 		    new EventHandler<MouseEvent>() {
 		         public void handle(MouseEvent e) {
@@ -54,7 +54,7 @@ public class LeftView extends VBox {
 			}
 	
 	public void setLabel(String win) {
-		whoWon.setText("Winner is: "+win);
+		whoWon.setText(win);
 	}
 	
 

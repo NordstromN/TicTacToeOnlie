@@ -9,6 +9,8 @@ public class TicTacToeController {
 	private TicTacToeView view;
 	private TTTClient start = new TTTClient();
 
+	// Controller Konstruktor instanziiert das model interface und die view
+	// Anschliessend werden die Buttons im Feld gesetzt
 	public TicTacToeController(TicTacToeModelInterface model, TicTacToeView view) {
 		this.model = model;
 		this.view = view;
@@ -21,13 +23,14 @@ public class TicTacToeController {
 		}
 		view.getNewGame().setOnAction(e -> newGame());
 		view.getNewRound().setOnAction(e -> newRound());
-		view.getSetName().setOnAction(e -> confirmName());
+
 	}
 
 	// Der Knopf startet eine neue Runde
 	private void newRound() {
 		view.setNewBoard();
 		model.setBoard();
+		view.setWinLabel("");
 
 		for (int row = 0; row < 3; row++) {
 			for (int col = 0; col < 3; col++) {
@@ -36,11 +39,6 @@ public class TicTacToeController {
 				view.getButt(r, c).setOnAction(e -> setToken(r, c));
 			}
 		}
-	}
-
-	private void confirmName() {
-		// TODO Auto-generated method stub
-
 	}
 
 	// Setzt den char in das Board und check ob gewonnen
@@ -53,11 +51,17 @@ public class TicTacToeController {
 		} else {
 			if (model.winCheck()) {
 				view.setButt(row, col, model.setMark());
-				view.setWinLabel("Der Gewinner ist " + view.getButt(row, col).getText());
+				String win = view.getButt(row, col).getText();
+				if (win.equals("x")) {
+					win = "o";
+				} else {
+					win = "x";
+				}
+				view.setWinLabel("Der Gewinner ist " + win);
 			} else {
-				view.setButt(row, col, model.setMark());
+					view.setButt(row, col, model.setMark());
+				}
 			}
-		}
 		updateButt();
 	}
 

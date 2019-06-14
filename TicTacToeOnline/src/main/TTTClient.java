@@ -44,7 +44,9 @@ public class TTTClient extends Application {
 
 	public static void main_old(String[] args) {
 
+		//Client Socket, connect to server on localhost whith the port 50500	
 		try (Socket socket = new Socket("127.0.0.1", 50500)) {
+			
 			// Setting a 5sek timeout window
 			socket.setSoTimeout(5000);
 			BufferedReader echoes = new BufferedReader(new InputStreamReader(socket.getInputStream()));

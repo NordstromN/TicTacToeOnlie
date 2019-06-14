@@ -10,8 +10,8 @@ import model.TicTacToeModelInterface;
 public class MenBar extends MenuBar {
 	
 	private TicTacToeModelInterface model;
-	protected Menu game, settings;
-	protected MenuItem newGame, endGame, changeCol;
+	protected Menu game;
+	protected MenuItem newGame, endGame;
 	
 	//create the constructor for the menuBar and the below items 
 	
@@ -28,15 +28,9 @@ public class MenBar extends MenuBar {
 	newGame.setOnAction((ActionEvent e) -> model.setBoard());
 	//add the items
 	game.getItems().addAll(newGame, endGame);
-	
-	//add the second Menu and sub-item
-	settings = new Menu("Settings");
-	changeCol = new MenuItem("Change Colour");
-	settings.getItems().add(changeCol);
-	this.getMenus().addAll(game, settings);
+	this.getMenus().add(game);
 	}
-
-
+	
 	//Closing method including a display
 	public void closeBox() {
 		Platform.exit();

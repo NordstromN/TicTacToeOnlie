@@ -11,10 +11,6 @@ public class TicTacToeModel implements TicTacToeModelInterface {
 	}
 
 	// Setzten einees neuen Brett/Spiel
-	/* (non-Javadoc)
-	 * @see model.TicTacToeModelInterface#setBoard()
-	 */
-	@Override
 	public void setBoard() {
 		board = new char[3][3];
 		for (int row = 0; row < 3; row++) {
@@ -25,10 +21,6 @@ public class TicTacToeModel implements TicTacToeModelInterface {
 	}
 
 	// Kontrolle ob es ein Gewinner gibt mit den drei Methoden
-	/* (non-Javadoc)
-	 * @see model.TicTacToeModelInterface#winCheck()
-	 */
-	@Override
 	public boolean winCheck() {
 		return (rowWinCheck() || colWinCheck() || diagWinCheck());
 	}
@@ -65,10 +57,6 @@ public class TicTacToeModel implements TicTacToeModelInterface {
 	}
 
 	// Wechseln des Spielers
-	/* (non-Javadoc)
-	 * @see model.TicTacToeModelInterface#changeToken()
-	 */
-	@Override
 	public char changeToken() {
 		if (player1Token == 'x') {
 			return player1Token = 'o';
@@ -77,10 +65,7 @@ public class TicTacToeModel implements TicTacToeModelInterface {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see model.TicTacToeModelInterface#setMark()
-	 */
-	@Override
+	//Setztn und wechseln der Tokens für den nächsten Spieler
 	public char setMark() {
 		changeToken();
 		return player1Token;
@@ -91,10 +76,8 @@ public class TicTacToeModel implements TicTacToeModelInterface {
 		return board[row][col];
 	}
 
-	/* (non-Javadoc)
-	 * @see model.TicTacToeModelInterface#placeMark(int, int)
-	 */
-	@Override
+	//PlayeMark kontrolliert ob das Feld besetzt ist oder nicht
+	//wenn nicht, wird das Mark gesetzte
 	public boolean placeMark(int row, int col) {
 		if ((row >= 0) && (row < 3)) {
 			if ((col >= 0) && (col < 3)) {
@@ -106,5 +89,5 @@ public class TicTacToeModel implements TicTacToeModelInterface {
 		}
 		return false;
 	}
-
+	
 }

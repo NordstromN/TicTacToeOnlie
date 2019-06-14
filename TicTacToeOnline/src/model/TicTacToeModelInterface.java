@@ -16,4 +16,4 @@ public interface TicTacToeModelInterface {
 	char getMark(int row, int col);
 
 	boolean placeMark(int row, int col);
-}
+	}

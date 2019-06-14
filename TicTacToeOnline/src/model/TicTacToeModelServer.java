@@ -24,6 +24,7 @@ public class TicTacToeModelServer extends Thread {
 	public void run() {
 		try {
 			BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			model.setBoard();			
 			PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
 			
 			//Endlosschleife, der Server "hört" immer
@@ -64,17 +65,18 @@ public class TicTacToeModelServer extends Thread {
 					int col = Integer.parseInt(echoString.substring(3, 4));
 					char mark = model.getMark(row, col);
 					output.println(mark);
-				}
+	
 
 				try {
-					Thread.sleep(100);
+					//Server timeout test
+					Thread.sleep(10);
 
 				} catch (InterruptedException e) {
 					System.out.println("Thread Interrupted");
 				}
 				// output.println(echoString);
 			}
-
+			}
 		} catch (IOException e) {
 			System.out.println("Opps: " + e.getMessage());
 		} finally {
